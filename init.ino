@@ -10,12 +10,14 @@
 
  */
 
+#include "sensor.h"
+#include "command.h"
+#include "modes.h"
+
 void setup() {
-  // put your setup code here, to run once:
-
+	sensor_init();
+	command_init();
+	mode_init();
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-
-}
+void loop() {}
