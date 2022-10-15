@@ -1,5 +1,11 @@
-#ifdef GLOBAL_VARIABLES.H
-#define GLOBAL_VARIABLES.H
+#ifndef ENV_VARS.H
+#define ENV_VARS.H
+
+typedef enum
+{
+	NORMAL,
+	SAFE
+} mode_t;
 
 typedef enum 
 { 

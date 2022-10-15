@@ -1,4 +1,4 @@
-#include "global_variables.h"
+#include "env_vars.h"
 
 void modes_init();
 void modes_set(mode_t mode);
