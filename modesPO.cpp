@@ -26,10 +26,11 @@ void modePO_set(mode_t mode) {
     modesIndicator_set(0);
   }
 	xSemaphoreGive( xSemaphore );
-
 }
 
 mode_t modePO_get() {
-  //return mode_mem;
+	xSemaphoreTake(xSemaphore, 0);
+  return mode_mem;
+	xSemaphoreGive( xSemaphore );
 }
 
