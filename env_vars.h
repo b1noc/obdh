@@ -1,6 +1,8 @@
 #ifndef ENV_VARS.H
 #define ENV_VARS.H
 
+#define LEDPIN 13
+
 typedef enum
 {
 	NORMAL,
