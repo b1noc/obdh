@@ -1,8 +1,8 @@
-include <Arduino_FreeRTOS.h>
-include <Arduino.h>
-include "modes.h"
-include "env_vars.h"
-include "txStatusSensor.h"
+#include <Arduino_FreeRTOS.h>
+#include <Arduino.h>
+#include "modes.h"
+#include "env_vars.h"
+#include "txStatusSensor.h"
 
 void activate(){
     commandInterrupt_activate();
