@@ -1,4 +1,4 @@
-#ifdef MODESPO.H
+#ifndef MODESPO.H
 #define MODESPO.H
 
 #include "env_vars.h"

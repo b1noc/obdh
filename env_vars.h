@@ -1,6 +1,11 @@
 #ifndef ENV_VARS.H
 #define ENV_VARS.H
 
+#define LEDPIN 13
+#define INTERRUPTPIN 2
+#define COMMANDPINLSB 8
+#define COMMANDPINMSB 9
+
 typedef enum
 {
 	NORMAL,

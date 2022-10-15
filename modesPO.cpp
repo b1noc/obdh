@@ -8,7 +8,7 @@ static mode_t mode_mem;
 static SemaphoreHandle_t xSemaphore;
 
 void modePO_init() {
-	mode_mem = NORMAL;
+	mode_mem = SAFE;
 	xSemaphore = xSemaphoreCreateMutex();
 	if ( xSemaphore == NULL ) 
 	{
