@@ -1,3 +1,15 @@
+/*
+  Authors: Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
+  Date: 2022-10-15
+  Version: 1.0
+  Language: C
+
+  Responsiblities:
+
+  modesPO is responsible for holding the current state.
+
+*/
+
 #include <Arduino_FreeRTOS.h>
 #include <semphr.h>
 #include "env_vars.h"

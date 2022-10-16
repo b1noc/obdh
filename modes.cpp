@@ -1,3 +1,15 @@
+/*
+  Authors: Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
+  Date: 2022-10-15
+  Version: 1.0
+  Language: C
+
+  Responsiblities:
+
+  modes is responsible for holding and indicating the current status on BUILTIN_LED.
+
+*/
+
 #include "modesIndicator.h"
 #include "modesPO.h"
 #include "modes.h"
