@@ -21,6 +21,50 @@
 #include "txSensor.h"
 #include "txStatusSensor.h"
 
-void samplerSensorP_activate(){
+static uint16_t SAMP_TIME 500; // [ms] TODO: In the current Assy4 document, this is TBD. Set to 500 ms.
+static void sampleChannel(void *pvParameters); // Declaration for task
+static mode_t currentMode; // Declaration for task
+static uint16_t sensorVoltage;
+static bool status;
 
+
+void samplerSensorP_activate(){
+  xTaskCreate(
+    sampleChannel
+    ,  "sampleChannel" // Name for identification
+    ,  128  // The stack size
+    ,  NULL
+    ,  1  // Priority. 3 is highest, 0 is lowest.
+    ,  NULL );
 }
+
+static void sampleChannel(void *pvParameters){
+  	(void) pvParameters;
+
+  	for (;;){
+		/*
+		This for-loop cycles infinitely. It does two mode checks. The first check is for SAFE mode,
+		which does nothing except continue to check the mode. The second check is for NORMAL mode,
+		which has full functionality and .
+		*/
+		currentMode = modes_get();
+		if (currentMode==SAFE){
+			currentMode = modes_get();
+			vTaskDelay( SAMP_TIME / portTICK_PERIOD_MS );
+		}
+		if (currentMode=NORMAL){
+		/*
+		Provided that the mode is NORMAL, another check needs to be done to see if we are reading
+		the channel or not. If txStatusSensor returns a value of 0, then we do not call the
+		transmit function from txSensor.
+		*/
+		sensorValue = analogRead(23);
+		currentStatus = txStatusSensor_get();
+		if (currentStatus==1){
+			txSensor_transmitAscii(sensorValue);
+		}
+    		vTaskDelay( SAMP_TIME / portTICK_PERIOD_MS );  // two ticks delay (30ms) in between reads for stability
+		}
+  }
+}
+
