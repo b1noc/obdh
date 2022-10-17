@@ -17,7 +17,7 @@
 #include "env_vars.h"
 #include "interpreterCommand.h"
 
-static void interpretFunction();
+static void interpretFunction(void *pvParameters); 
 
 void actionCommandS_activate(){
   xTaskCreate(

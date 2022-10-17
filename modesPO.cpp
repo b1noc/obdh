@@ -19,7 +19,7 @@
 static mode_t mode_mem;
 static SemaphoreHandle_t xSemaphore;
 
-void modePO_init() {
+void modesPO_init() {
 	mode_mem = SAFE;
 	xSemaphore = xSemaphoreCreateMutex();
 	if ( xSemaphore == NULL ) 
@@ -28,7 +28,7 @@ void modePO_init() {
 	}
 }
 
-void modePO_set(mode_t mode) {
+void modesPO_set(mode_t mode) {
 	xSemaphoreTake(xSemaphore, 0);
   mode_mem = mode;
   if(mode==NORMAL){
@@ -40,7 +40,7 @@ void modePO_set(mode_t mode) {
 	xSemaphoreGive( xSemaphore );
 }
 
-mode_t modePO_get() {
+mode_t modesPO_get() {
 	xSemaphoreTake(xSemaphore, 0);
   return mode_mem;
 	xSemaphoreGive( xSemaphore );

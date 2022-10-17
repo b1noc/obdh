@@ -17,17 +17,15 @@
 #include <Arduino_FreeRTOS.h>
 
  // Include local files
+#include "modes.h"
 #include "samplerSensorP.h"
 #include "txSensor.h"
 #include "txStatusSensor.h"
-#include "modes.h"
 
-#include "env_vars.h"
 
 static uint16_t SAMP_TIME = 500; // [ms] TODO: In the current Assy4 document, this is TBD. Set to 500 ms.
 								 // TODO: move to global defaults
 static void sampleLoop(void *pvParameters); // Declaration for task
-static mode_t currentMode; // Declaration for task
 static uint16_t sensorVoltage;
 static bool status;
 
@@ -47,6 +45,7 @@ static void sampleLoop(void *pvParameters){
 
 	uint16_t sensorValue; 
 	bool currentStatus;
+	mode_t currentMode; 
 
   	for (;;){
 		/*

@@ -21,20 +21,8 @@
 #include "actionCommandS.h"
 #include "commandInterrupt.h"
 
-void activate(){
+void command_activate(){
     commandInterrupt_activate();
     actionCommandS_activate();
     interpreterCommand_init();
-}
-
-void txStatusSensor_set(bool status){
-    txStatusSensor_set(status);
-}
-
-void modes_set(mode_t mode){
-    modes_set(mode);
-}
-
-mode_t modes_get(){
-    return modes_get();
 }
