@@ -21,6 +21,8 @@
 #include "txSensor.h"
 #include "txStatusSensor.h"
 
+#include "env_vars.h"
+
 static uint16_t SAMP_TIME 500; // [ms] TODO: In the current Assy4 document, this is TBD. Set to 500 ms.
 static void sampleLoop(void *pvParameters); // Declaration for task
 static mode_t currentMode; // Declaration for task
@@ -59,7 +61,7 @@ static void sampleLoop(void *pvParameters){
 		the channel or not. If txStatusSensor returns a value of 0, then we do not call the
 		transmit function from txSensor.
 		*/
-		sensorValue = analogRead(23); // TODO: Not 100% sure this is the correct channel to read from.
+		sensorValue = analogRead(ADCPIN); 
 		currentStatus = txStatusSensor_get();
 		if (currentStatus==1){
 			txSensor_transmitAscii(sensorValue);
@@ -68,4 +70,3 @@ static void sampleLoop(void *pvParameters){
 		}
   }
 }
-
