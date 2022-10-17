@@ -51,9 +51,7 @@ static void sampleLoop(void *pvParameters){
 		we want to be transmitting, it will then finally use txSensor to transmit the value.
 		*/
 		currentMode = modes_get();
-		if (currentMode==SAFE){
-			vTaskDelay( SAMP_TIME / portTICK_PERIOD_MS ); // TODO: This is the wrong tick type I think. Need to change to Tick_Type_t(?)
-		}
+		if (currentMode==SAFE){}
 		if (currentMode==NORMAL){
 			/*
 			Provided that the mode is NORMAL, another check needs to be done to see if we are reading
@@ -65,7 +63,7 @@ static void sampleLoop(void *pvParameters){
 				if (currentStatus==1){
 					txSensor_transmitAscii(sensorValue);
 				}
-    			vTaskDelay( SAMP_TIME / portTICK_PERIOD_MS ); // TODO: This is the wrong tick type I think. Need to change to Tick_Type_t(?)
 		}
-  }
+		vTaskDelay( SAMP_TIME / portTICK_PERIOD_MS ); // TODO: This is the wrong tick type I think. Need to change to Tick_Type_t(?)
+  	}
 }
