@@ -52,21 +52,20 @@ static void sampleLoop(void *pvParameters){
 		*/
 		currentMode = modes_get();
 		if (currentMode==SAFE){
-			currentMode = modes_get();
 			vTaskDelay( SAMP_TIME / portTICK_PERIOD_MS ); // TODO: This is the wrong tick type I think. Need to change to Tick_Type_t(?)
 		}
 		if (currentMode=NORMAL){
-		/*
-		Provided that the mode is NORMAL, another check needs to be done to see if we are reading
-		the channel or not. If txStatusSensor returns a value of 0, then we do not call the
-		transmit function from txSensor.
-		*/
-		sensorValue = analogRead(ADCPIN); 
-		currentStatus = txStatusSensor_get();
-		if (currentStatus==1){
-			txSensor_transmitAscii(sensorValue);
-		}
-    		vTaskDelay( SAMP_TIME / portTICK_PERIOD_MS ); // TODO: This is the wrong tick type I think. Need to change to Tick_Type_t(?)
+			/*
+			Provided that the mode is NORMAL, another check needs to be done to see if we are reading
+			the channel or not. If txStatusSensor returns a value of 0, then we do not call the
+			transmit function from txSensor.
+			*/
+			sensorValue = analogRead(ADCPIN); 
+			currentStatus = txStatusSensor_get();
+				if (currentStatus==1){
+					txSensor_transmitAscii(sensorValue);
+				}
+    			vTaskDelay( SAMP_TIME / portTICK_PERIOD_MS ); // TODO: This is the wrong tick type I think. Need to change to Tick_Type_t(?)
 		}
   }
 }
