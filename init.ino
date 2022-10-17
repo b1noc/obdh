@@ -10,14 +10,24 @@
 
  */
 
+#include "env_vars.h"
 #include "sensor.h"
 #include "command.h"
 #include "modes.h"
 
 void setup() {
+
+#ifdef DEBUG
+	Serial.begin(9600);
+	while (!Serial) {}
+	Serial.print("BOOT \n");
+#endif
 	sensor_activate();
 	command_activate();
 	modes_init();
+#ifdef DEBUG
+	Serial.print("setup completed \n");
+#endif
 }
 
 void loop() {}
