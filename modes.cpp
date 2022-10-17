@@ -13,13 +13,14 @@
 #include "modesIndicator.h"
 #include "modesPO.h"
 #include "modes.h"
+#include "env_vars.h"
 
 /*
 This function initializes its childeren.
 */
 void modes_init(){ 
-  void modesIndicator_init();
-  void modesPO_init();
+  modesPO_init();
+  modesIndicator_init();
 }
 
 void modes_set(mode_t mode) {
