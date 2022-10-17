@@ -17,14 +17,15 @@
 
 
 void modesIndicator_init() {
-	  pinMode(LEDPIN, OUTPUT);    
+	pinMode(LEDPIN, OUTPUT);    
+	//TODO: status?
 }
 
 void modesIndicator_set(bool mode) {
-	if (mode == SAFE) {
+	if (mode == 1) {
 		digitalWrite(LEDPIN, HIGH);
 	}
-	else if (mode == NORMAL) {
+	else if (mode == 0) {
 		digitalWrite(LEDPIN, LOW);
 	}
 }
