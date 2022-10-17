@@ -17,6 +17,8 @@
 #include "modes.h"
 #include "env_vars.h"
 #include "txStatusSensor.h"
+#include "interpreterCommand.h"
+#include "actionCommandS.h"
 
 void activate(){
     commandInterrupt_activate();
