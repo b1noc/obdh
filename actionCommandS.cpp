@@ -16,7 +16,18 @@
 #include "interpreterCommand.h"
 
 void actionCommandS_activate(){
-    xTaskCreate(
+xTaskCreate(
 
-    )
+}
+
+void commandInterrupt_start(){
+
+}
+
+command_t commandInterrupt(){
+
+}
+
+void interpreterCommand_execute(command_t){
+  
 }
