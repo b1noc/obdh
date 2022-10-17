@@ -22,9 +22,9 @@ void setup() {
 	while (!Serial) {}
 	Serial.print("BOOT \n");
 #endif
+	modes_init();
 	sensor_activate();
 	command_activate();
-	modes_init();
 #ifdef DEBUG
 	Serial.print("setup completed \n");
 #endif
