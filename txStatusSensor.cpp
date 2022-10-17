@@ -12,6 +12,7 @@
 
  // Include the OS
 #include <Arduino_FreeRTOS.h>
+#include <semphr.h>
 
  // Include local header files
 #include "txStatusSensor.h"

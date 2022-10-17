@@ -11,6 +11,7 @@
 
 */
 
+#include <Arduino_FreeRTOS.h>
 #include "actionCommandS.h"
 #include "commandInterrupt.h"
 #include "env_vars.h"
@@ -26,7 +27,6 @@ void actionCommandS_activate(){
     ,  NULL
     ,  1  // Priority. 3 is highest, 0 is lowest.
     ,  NULL );
-
 }
 
 static void interpretFunction(void *pvParameters) {

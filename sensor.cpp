@@ -19,6 +19,9 @@
  // Include local headers
 #include "modes.h"
 #include "sensor.h"
+#include "txSensor.h"
+#include "samplerSensorP.h"
+#include "txStatusSensor.h"
 
  // Define functions
 

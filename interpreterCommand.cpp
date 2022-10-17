@@ -13,8 +13,8 @@
 #include <Arduino.h>
 #include <Arduino_FreeRTOS.h>
 #include "modes.h"
-#include "txStatusSensor.h"
 #include "interpreterCommand.h"
+#include "sensor.h"
 
 static mode_t mode;
 
@@ -23,8 +23,8 @@ void interpreterCommand_init(){
 	interpreterCommand initially sets the transmission status to OFF
 	and sets the mode to SAFE
 	*/
-	sensor_setTxStatus(bool 0);
-	modes_set(mode_t SAFE);
+	sensor_setTxStatus(0);
+	modes_set(SAFE);
 }
 
 void interpreterCommand_execute(command_t command){
@@ -36,16 +36,16 @@ void interpreterCommand_execute(command_t command){
 	if (command == TRANS_ON){
 		mode = modes_get();
 		if (mode!=SAFE){
-			sensor_setTxStatus(bool 1);
+			sensor_setTxStatus(1);
 		}
 	}
         if (command == TRANS_OFF){
-		sensor_setTxStatus(bool 0);
+		sensor_setTxStatus(0);
 	}
         if (command == NORMAL_MODE){
-                modes_set(mode_t NORMAL);
+                modes_set(NORMAL);
         }
         if (command == SAFE_MODE){
-                modes_set(mode_t SAFE);
+                modes_set(SAFE);
         }
 }

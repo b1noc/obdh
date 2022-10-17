@@ -15,9 +15,9 @@
 #include "modes.h"
 
 void setup() {
-	sensor_init();
-	command_init();
-	mode_init();
+	sensor_activate();
+	command_activate();
+	modes_init();
 }
 
 void loop() {}

@@ -19,6 +19,7 @@
 #include "txStatusSensor.h"
 #include "interpreterCommand.h"
 #include "actionCommandS.h"
+#include "commandInterrupt.h"
 
 void activate(){
     commandInterrupt_activate();
@@ -35,5 +36,5 @@ void modes_set(mode_t mode){
 }
 
 mode_t modes_get(){
-    return modes_get()
+    return modes_get();
 }

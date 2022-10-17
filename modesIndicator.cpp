@@ -18,7 +18,6 @@
 
 void modesIndicator_init() {
 	pinMode(LEDPIN, OUTPUT);    
-	//TODO: status?
 }
 
 void modesIndicator_set(bool mode) {
