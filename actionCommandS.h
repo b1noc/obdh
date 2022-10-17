@@ -14,4 +14,4 @@
 
 #include "env_vars.h"
 
-void actionCommandS();
+void actionCommandS_activate();

@@ -14,20 +14,29 @@
 #include "actionCommandS.h"
 #include "commandInterrupt.h"
 #include "interpreterCommand.h"
+// TODO: include global vars and add command_t type there.
+
+static void interpretFunction();
 
 void actionCommandS_activate(){
-xTaskCreate(
+  xTaskCreate(
+    interpretFunction
+    ,  "interpretFunction" // Name for identification
+    ,  128  // The stack size
+    ,  NULL
+    ,  1  // Priority. 3 is highest, 0 is lowest.
+    ,  NULL );
 
 }
 
-void commandInterrupt_start(){
+static void interpretFunction(void *pvParameters) {
+  	(void) pvParameters;
 
-}
+	commandInterrupt_start();
+	command_t command;
 
-command_t commandInterrupt(){
-
-}
-
-void interpreterCommand_execute(command_t){
-  
+  	for (;;){
+		command = commandInterrupt_wait();
+		interpreterCommand_execute(command);
+	 }
 }
