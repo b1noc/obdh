@@ -13,8 +13,8 @@
 
 #include "actionCommandS.h"
 #include "commandInterrupt.h"
+#include "env_vars.h"
 #include "interpreterCommand.h"
-// TODO: include global vars and add command_t type there.
 
 static void interpretFunction();
 
