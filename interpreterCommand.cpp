@@ -23,8 +23,9 @@ void interpreterCommand_init(){
 	interpreterCommand initially sets the transmission status to OFF
 	and sets the mode to SAFE
 	*/
-	sensor_setTxStatus(0);
-	modes_set(SAFE);
+	//TODO: check if they should really be removed
+	//sensor_setTxStatus(0);
+	//modes_set(SAFE);
 }
 
 void interpreterCommand_execute(command_t command){
