@@ -33,13 +33,13 @@ void sensor_activate(){
 
 void sensor_setTxStatus(bool status){
 	mode_t mode = modes_get();
-	if (mode == NORMAL, status==1){
-		txStatusSensor_set(1);
-	}
-	if (mode == SAFE, status==0){
-		txStatusSensor_set(0);
+#ifdef DEBUG
+	Serial.println("sensor_setTxStatus: mode = "+ (String)mode);
+#endif
+	if (mode == NORMAL) {
+		txStatusSensor_set(status);
 	}
 	else {
-	// TODO: Include error handling incase the bool status received is neither 0 or 1
+		txStatusSensor_set(0);
 	}
 }
