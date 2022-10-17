@@ -42,7 +42,7 @@ static void interruptHandler(){
   xSemaphoreGiveFromISR(interruptSemaphore, NULL); //TODO: Check what NULL means here
 }
 
-void commandInterrupt_wait() {
+command_t commandInterrupt_wait() {
 
     if (xSemaphoreTake(interruptSemaphore, portMAX_DELAY) == pdPASS) {
 		return digitalRead(COMMANDPINLSB) | (1<<digitalRead(COMMANDPINMSB));
