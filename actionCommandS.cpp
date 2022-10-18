@@ -38,5 +38,6 @@ static void recieveMessage(void *pvParameters) {
   	for (;;){
 		command = commandInterrupt_wait();
 		interpreterCommand_execute(command);
+		vTaskDelay( SAMP_TIME / portTICK_PERIOD_MS);
 	 }
 }

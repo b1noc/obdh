@@ -23,8 +23,6 @@
 #include "txStatusSensor.h"
 
 
-static uint16_t SAMP_TIME = 500; // [ms] TODO: In the current Assy4 document, this is TBD. Set to 500 ms.
-								 // TODO: move to global defaults
 static void sampleLoop(void *pvParameters); // Declaration for task
 static uint16_t sensorVoltage;
 static bool status;
