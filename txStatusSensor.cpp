@@ -46,6 +46,7 @@ void txStatusSensor_set(bool status){
 
 bool txStatusSensor_get(){
 	xSemaphoreTake( xSemaphore, 0);
-	return currentState;
+	bool state = currentState;
 	xSemaphoreGive( xSemaphore );
+	return state;
 }

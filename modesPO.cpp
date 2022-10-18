@@ -45,7 +45,8 @@ void modesPO_set(mode_t mode) {
 
 mode_t modesPO_get() {
 	xSemaphoreTake(xSemaphore, 0);
-  return mode_mem;
+	mode_t mode = mode_mem;
 	xSemaphoreGive( xSemaphore );
+  return mode;
 }
 
