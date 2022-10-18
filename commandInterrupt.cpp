@@ -21,10 +21,10 @@ static void interruptHandler();
 static SemaphoreHandle_t interruptSemaphore;
 
 void commandInterrupt_activate(){
-    pinMode(INTERRUPTPIN, INPUT); //going from low to high voltage
+    pinMode(2, INPUT_PULLUP); //going from low to high voltage
     interruptSemaphore = xSemaphoreCreateBinary(); //creates the semaphore
-    pinMode(COMMANDPINLSB, INPUT_PULLUP);
-    pinMode(COMMANDPINMSB, INPUT_PULLUP);
+    pinMode(COMMANDPINLSB, INPUT);
+    pinMode(COMMANDPINMSB, INPUT);
 }
 
 void commandInterrupt_start(){
@@ -35,10 +35,9 @@ void commandInterrupt_start(){
 }
 
 static void interruptHandler(){
-  /**
-   * Give semaphore in the interrupt handler
-   * https://www.freertos.org/a00124.html
-   */
+#ifdef DEBUG
+	Serial.println("Interrupt received");
+#endif
   
   xSemaphoreGiveFromISR(interruptSemaphore, NULL); //TODO: Check what NULL means here
 }
