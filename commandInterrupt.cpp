@@ -35,16 +35,15 @@ void commandInterrupt_start(){
 }
 
 static void interruptHandler(){
-#ifdef DEBUG
-	Serial.println("Interrupt received");
-#endif
   
   xSemaphoreGiveFromISR(interruptSemaphore, NULL); //TODO: Check what NULL means here
 }
 
 command_t commandInterrupt_wait() {
-
     if (xSemaphoreTake(interruptSemaphore, portMAX_DELAY) == pdPASS) {
+#ifdef DEBUG
+	Serial.println("Interrupt received");
+#endif
 		return digitalRead(COMMANDPINLSB) | (1<<digitalRead(COMMANDPINMSB));
     }
 
