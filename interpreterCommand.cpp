@@ -34,19 +34,18 @@ void interpreterCommand_execute(command_t command){
 	executes it. If asked to turn transmission on while in SAFE mode,
 	the command will be ignored.
 	*/
-	if (command == TRANS_ON){
-		mode = modes_get();
-		if (mode!=SAFE){
+	if (command == SAFE_MODE){
+		modes_set(SAFE);
+	}
+	else if (command == NORMAL_MODE){
+		modes_set(NORMAL);
+	}
+	else if (command == TRANS_ON){
+		if (modes_get() != SAFE){
 			sensor_setTxStatus(1);
 		}
 	}
-        if (command == TRANS_OFF){
+	else if (command == TRANS_OFF){
 		sensor_setTxStatus(0);
 	}
-        if (command == NORMAL_MODE){
-                modes_set(NORMAL);
-        }
-        if (command == SAFE_MODE){
-                modes_set(SAFE);
-        }
 }

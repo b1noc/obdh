@@ -39,33 +39,31 @@ void samplerSensorP_activate(){
 }
 
 static void sampleLoop(void *pvParameters){
-  	(void) pvParameters;
+  (void) pvParameters;
 
 	uint16_t sensorValue; 
-	bool currentStatus;
-	mode_t currentMode; 
 
-  	for (;;){
+	for (;;){
 		/*
 		This for-loop cycles infinitely. It does two mode checks. The first check is for SAFE mode,
 		which does nothing except continue to check the mode. The second check is for NORMAL mode,
 		which then does another check to see if we actually want to be transmitting. Provided that
 		we want to be transmitting, it will then finally use txSensor to transmit the value.
 		*/
-		currentMode = modes_get();
-		if (currentMode==SAFE){}
-		if (currentMode==NORMAL){
-			/*
-			Provided that the mode is NORMAL, another check needs to be done to see if we are reading
-			the channel or not. If txStatusSensor returns a value of 0, then we do not call the
-			transmit function from txSensor.
-			*/
-			sensorValue = analogRead(ADCPIN); 
-			currentStatus = txStatusSensor_get();
-				if (currentStatus==1){
-					txSensor_transmitAscii(sensorValue);
-				}
+		/*
+		Provided that the mode is NORMAL, another check needs to be done to see if we are reading
+		the channel or not. If txStatusSensor returns a value of 0, then we do not call the
+		transmit function from txSensor.
+		*/
+
+		if (modes_get() == SAFE) {
+			txStatusSensor_set(0);
 		}
-		vTaskDelay( SAMP_TIME / portTICK_PERIOD_MS ); // TODO: This is the wrong tick type I think. Need to change to Tick_Type_t(?)
-  	}
+		if (txStatusSensor_get() == 1) {
+			sensorValue = analogRead(ADCPIN); 
+			txSensor_transmitAscii(sensorValue);
+		}
+		// TODO: @Anita This is the wrong tick type I think. Need to change to Tick_Type_t(?)
+		vTaskDelay( SAMP_TIME / portTICK_PERIOD_MS ); 
+	}
 }
