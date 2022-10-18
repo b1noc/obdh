@@ -20,22 +20,25 @@ static mode_t mode_mem;
 static SemaphoreHandle_t xSemaphore;
 
 void modesPO_init() {
-	mode_mem = SAFE;
 	xSemaphore = xSemaphoreCreateMutex();
 	if ( xSemaphore == NULL ) 
 	{
 		//this would throw an error.
 	}
+	modesPO_set(SAFE);
 }
 
 void modesPO_set(mode_t mode) {
+#ifdef DEBUG
+		Serial.println("setMode to: " + (String) mode);
+#endif
 	xSemaphoreTake(xSemaphore, 0);
   mode_mem = mode;
   if(mode==NORMAL){
-    modesIndicator_set(1);
+    modesIndicator_set(0);
   }
   else if(mode==SAFE){
-    modesIndicator_set(0);
+    modesIndicator_set(1);
   }
 	xSemaphoreGive( xSemaphore );
 }
