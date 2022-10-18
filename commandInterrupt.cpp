@@ -21,32 +21,28 @@ static void interruptHandler();
 static SemaphoreHandle_t interruptSemaphore;
 
 void commandInterrupt_activate(){
-    pinMode(2, INPUT_PULLUP); //going from low to high voltage
-    interruptSemaphore = xSemaphoreCreateBinary(); //creates the semaphore
-    pinMode(COMMANDPINLSB, INPUT_PULLUP);
-    pinMode(COMMANDPINMSB, INPUT_PULLUP);
+	pinMode(2, INPUT_PULLUP); //going from low to high voltage
+	interruptSemaphore = xSemaphoreCreateBinary(); //creates the semaphore
+	pinMode(COMMANDPINLSB, INPUT_PULLUP);
+	pinMode(COMMANDPINMSB, INPUT_PULLUP);
 }
 
 void commandInterrupt_start(){
-    if (interruptSemaphore != NULL) {
-    // Attach interrupt for Arduino digital pin
-    attachInterrupt(digitalPinToInterrupt(2), interruptHandler, RISING);
-  }
+	attachInterrupt(digitalPinToInterrupt(2), interruptHandler, RISING);
 }
 
 static void interruptHandler(){
-  
-  xSemaphoreGiveFromISR(interruptSemaphore, NULL); //TODO: Check what NULL means here
+	xSemaphoreGiveFromISR(interruptSemaphore, NULL); //TODO: Check what NULL means here
 }
 
 command_t commandInterrupt_wait() {
-    if (xSemaphoreTake(interruptSemaphore, portMAX_DELAY) == pdPASS) {
-		command_t command = digitalRead(COMMANDPINLSB) | (digitalRead(COMMANDPINMSB)<<1);
+	xSemaphoreTake(interruptSemaphore, portMAX_DELAY);
+	command_t command = digitalRead(COMMANDPINLSB) | (digitalRead(COMMANDPINMSB)<<1);
+
 #ifdef DEBUG
 	Serial.println("Interrupt received");
 	Serial.println("command = " + (String) digitalRead(COMMANDPINMSB) + digitalRead(COMMANDPINLSB) + " = " + (String) command);
 #endif
-		return command;
-    }
 
+	return command;
 }
