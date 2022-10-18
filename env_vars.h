@@ -3,7 +3,7 @@
 
 #define DEBUG
 
-#define LEDPIN 13
+#define LEDPIN LED_BUILTIN
 #define ADCPIN 14 // ADC PIN A0
 #define INTERRUPTPIN 2
 #define COMMANDPINLSB 8
