@@ -35,6 +35,7 @@ void sensor_setTxStatus(bool status){
 	mode_t mode = modes_get();
 #ifdef DEBUG
 	Serial.println("sensor_setTxStatus: mode = "+ (String)mode);
+	Serial.println("sensor_setTxStatus: status = "+ (String)status);
 #endif
 	if (mode == NORMAL) {
 		txStatusSensor_set(status);
