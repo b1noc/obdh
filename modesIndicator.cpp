@@ -20,11 +20,17 @@ void modesIndicator_init() {
 	pinMode(LEDPIN, OUTPUT);    
 }
 
-void modesIndicator_set(bool mode) {
-	if (mode == 1) {
+void modesIndicator_set(bool status) {
+	if (status == 1) {
+#ifdef DEBUG
+		Serial.println("Turn on LED status = " + (String) status);
+#endif
 		digitalWrite(LEDPIN, HIGH);
 	}
-	else if (mode == 0) {
+	else if (status == 0) {
+#ifdef DEBUG
+		Serial.println("Turn off LED status = " + (String) status);
+#endif
 		digitalWrite(LEDPIN, LOW);
 	}
 }
