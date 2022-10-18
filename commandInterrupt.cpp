@@ -23,8 +23,8 @@ static SemaphoreHandle_t interruptSemaphore;
 void commandInterrupt_activate(){
     pinMode(2, INPUT_PULLUP); //going from low to high voltage
     interruptSemaphore = xSemaphoreCreateBinary(); //creates the semaphore
-    pinMode(COMMANDPINLSB, INPUT);
-    pinMode(COMMANDPINMSB, INPUT);
+    pinMode(COMMANDPINLSB, INPUT_PULLUP);
+    pinMode(COMMANDPINMSB, INPUT_PULLUP);
 }
 
 void commandInterrupt_start(){
@@ -41,10 +41,12 @@ static void interruptHandler(){
 
 command_t commandInterrupt_wait() {
     if (xSemaphoreTake(interruptSemaphore, portMAX_DELAY) == pdPASS) {
+		command_t command = digitalRead(COMMANDPINLSB) | (digitalRead(COMMANDPINMSB)<<1);
 #ifdef DEBUG
 	Serial.println("Interrupt received");
+	Serial.println("command = " + (String) digitalRead(COMMANDPINMSB) + digitalRead(COMMANDPINLSB) + " = " + (String) command);
 #endif
-		return digitalRead(COMMANDPINLSB) | (1<<digitalRead(COMMANDPINMSB));
+		return command;
     }
 
 }
