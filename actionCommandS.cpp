@@ -17,19 +17,19 @@
 #include "env_vars.h"
 #include "interpreterCommand.h"
 
-static void interpretFunction(void *pvParameters); 
+static void recieveMessage(void *pvParameters); 
 
 void actionCommandS_activate(){
   xTaskCreate(
-    interpretFunction
-    ,  "interpretFunction" // Name for identification
+    recieveMessage
+    ,  "recieveMessage" // Name for identification
     ,  128  // The stack size
     ,  NULL
     ,  1  // Priority. 3 is highest, 0 is lowest.
     ,  NULL );
 }
 
-static void interpretFunction(void *pvParameters) {
+static void recieveMessage(void *pvParameters) {
   	(void) pvParameters;
 
 	commandInterrupt_start();
