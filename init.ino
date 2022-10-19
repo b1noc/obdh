@@ -1,32 +1,45 @@
-/*
-  Authors: Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
-  Date: 2022-10-15
-  Version: 1.0
-  Language: C
-
-  Responsiblities: 
-
-  Init is responsible for initiating all objects. It is the main file.
-
- */
+/* 
+ * init.ino 
+ *
+ * Date: 2022-10-15
+ * Version: 1.0
+ * Language: C
+ *
+ * Title:
+ *    Init Object
+ *
+ * Responsibility:
+ *    This object is responsible for initializing all first level objects.
+ *
+ * Authors:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
+ *
+ * Reviewed:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 19 October 2022
+ *
+ * NOTE:
+ *    This object has no header file as it is the initial file for the Arduino compiler. 
+*/
 
 #include "env_vars.h"
 #include "sensor.h"
-#include "command.h"
 #include "modes.h"
+#include "command.h"
 
 void setup() {
 
 #ifdef DEBUG
 	Serial.begin(9600);
 	while (!Serial) {}
-	Serial.print("BOOT \n");
+	Serial.println("BOOT");
 #endif
+
 	modes_init();
 	sensor_activate();
 	command_activate();
+
 #ifdef DEBUG
-	Serial.print("setup completed \n");
+	Serial.println("Setup completed");
 #endif
 }
 
