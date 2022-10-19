@@ -10,13 +10,8 @@
 
 */
 
- // Include Arduino library
 #include <Arduino.h>
-
- // Include the OS
 #include <Arduino_FreeRTOS.h>
-
- // Include local headers
 #include "modes.h"
 #include "sensor.h"
 #include "txSensor.h"
