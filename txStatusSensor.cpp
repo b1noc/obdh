@@ -18,7 +18,6 @@
  * Reviewed:
  * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 20 October 2022
  */
-
 #include <Arduino_FreeRTOS.h>
 #include <semphr.h>
 #include <env_vars.h>
@@ -28,8 +27,12 @@ static bool txStatus; /* TX status deciding if transmission is ON/OFF. */
 static SemaphoreHandle_t xSemaphore; /* Mutex semaphore reference */
 
 void txStatusSensor_init(void) {
-	txStatus = 0;
 	xSemaphore = xSemaphoreCreateMutex();
+	/* 
+	 * Question @Anita: Does it make sense to call the txStatusSensor_set() 
+	 * function instead of initializing the state directly?
+	 */
+	txStatusSensor_set(0);
 }
 
 void txStatusSensor_set(bool status) {

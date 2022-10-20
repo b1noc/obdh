@@ -18,7 +18,7 @@
  * 			Initializing the object and setting the txStatus to 0 (OFF).
  *
  * 		set(bool status):
- * 			Setting the status to the value given as input argument.
+ * 			Setting the status to the value given as status input argument.
  *
  * 		get():
  * 			Returning the currently set txStatus.
