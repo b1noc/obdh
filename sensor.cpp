@@ -1,15 +1,23 @@
 /*
-  Authors: Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
-  Date: 2022-10-15
-  Version: 1.0
-  Language: C
-
-  Responsiblities:
-
-  Sensor is responsible for sensor sampling and transmission.
-
-*/
-
+ * sensor.cpp
+ *
+ * Date: 2022-10-15
+ * Version: 1.0
+ * Language: C
+ *
+ * Title:
+ *		Sensor
+ *
+ * Method:
+ *		This object initializes all it's child objects and delegates function
+ *		calls.	
+ *
+ * Authors:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
+ *
+ * Reviewed:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 20 October 2022
+ */
 #include <Arduino.h>
 #include <Arduino_FreeRTOS.h>
 #include "modes.h"
@@ -18,24 +26,12 @@
 #include "samplerSensorP.h"
 #include "txStatusSensor.h"
 
- // Define functions
-
-void sensor_activate(){
+void sensor_activate(void) {
 	txSensor_init();
 	samplerSensorP_activate();
 	txStatusSensor_init();
 }
 
-void sensor_setTxStatus(bool status){
-	mode_t mode = modes_get();
-#ifdef DEBUG
-	Serial.println("sensor_setTxStatus: mode = "+ (String)mode);
-	Serial.println("sensor_setTxStatus: status = "+ (String)status);
-#endif
-	if (mode == NORMAL) {
-		txStatusSensor_set(status);
-	}
-	else {
-		txStatusSensor_set(0);
-	}
+void sensor_setTxStatus(bool status) {
+	txStatusSensor_set(status);
 }
