@@ -1,22 +1,28 @@
 /*
-  Authors: Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
-  Date: 2022-10-15
-  Version: 1.0
-  Language: C
-
-  Responsiblities:
-
-  modesIndicator is responsible for indicating the current state on BUILTIN_LED.
-
-*/
-
+ * modesIndicator.cpp
+ *
+ * Date: 2022-10-15
+ * Version: 1.0
+ * Language: C
+ *
+ * Title:
+ *		Modes Indicator
+ *
+ * Method:
+ *		The LED is switched ON/OFF by using Arduino library calls.
+ *
+ * Authors:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
+ *
+ * Reviewed:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 20 October 2022
+ */
 
 #include <Arduino.h>
-#include "modesIndicator.h"
 #include "env_vars.h"
+#include "modesIndicator.h"
 
-
-void modesIndicator_init() {
+void modesIndicator_init(void) {
 	pinMode(LED_PIN, OUTPUT);    
 }
 
