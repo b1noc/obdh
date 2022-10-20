@@ -17,14 +17,10 @@
  * Reviewed:
  * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 20 October 2022
  */
-#include <Arduino_FreeRTOS.h>
-#include <Arduino.h>
-#include "env_vars.h"
-#include "sensor.h"
-#include "modes.h"
 #include "commandInterrupt.h"
 #include "actionCommandS.h"
 #include "interpreterCommand.h"
+#include "command.h"
 
 void command_activate(void) {
     commandInterrupt_activate();
