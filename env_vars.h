@@ -3,11 +3,11 @@
 
 #define DEBUG
 
-#define LEDPIN LED_BUILTIN
-#define ADCPIN 14 // ADC PIN A0
-#define INTERRUPTPIN 2
-#define COMMANDPINLSB 8
-#define COMMANDPINMSB 9
+#define LED_PIN LED_BUILTIN
+#define ADC_PIN 14 // ADC PIN A0
+#define INTERRUPT_PIN 2
+#define COMMAND_PIN_LSB 8
+#define COMMAND_PIN_MSB 9
 #define SAMP_TIME 500 //  TODO: In the current Assy4 document, this is TBD. Set to 500 ms.
 
 #ifdef DEBUG

@@ -60,7 +60,7 @@ static void sampleLoop(void *pvParameters){
 			txStatusSensor_set(0);
 		}
 		if (txStatusSensor_get() == 1) {
-			sensorValue = analogRead(ADCPIN); 
+			sensorValue = analogRead(ADC_PIN); 
 			txSensor_transmitAscii(sensorValue);
 		}
 		// TODO: @Anita This is the wrong tick type I think. Need to change to Tick_Type_t(?)
