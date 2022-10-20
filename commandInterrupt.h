@@ -33,12 +33,16 @@
  *
  * Reviewed:
  * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 19 October 2022
+ *
+ * 	Note:
+ * 		The return type of commandInterrupt_wait was changed after discussion 
+ * 		with the customer to avoid working with pointers.
  */
 #ifndef COMMANDINTERRUPT.H
 #define COMMANDINTERRUPT.H
 
 void commandInterrupt_activate(void);
 void commandInterrupt_start(void);
-command_t commandInterrupt_wait(void);
+command_t commandInterrupt_wait(void); 
 
 #endif

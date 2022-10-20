@@ -19,15 +19,14 @@
  * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 19 October 2022
  *
 */
-
 #include <Arduino.h>
 #include <Arduino_FreeRTOS.h>
 #include <semphr.h>
 #include "env_vars.h"
 #include "commandInterrupt.h"
 
-static void interruptHandler();
-static SemaphoreHandle_t interruptSemaphore; /* stores the reference to the semaphore */
+static void interruptHandler(void);
+static SemaphoreHandle_t interruptSemaphore; /* reference to the semaphore */
 
 void commandInterrupt_activate(void) {
 	pinMode(2, INPUT_PULLUP); 
@@ -44,8 +43,8 @@ static void interruptHandler(void) {
 	xSemaphoreGiveFromISR(interruptSemaphore, NULL); 
 }
 
-command_t commandInterrupt_wait() {
-	xSemaphoreTake(interruptSemaphore, portMAX_DELAY);
+command_t commandInterrupt_wait(void) {
+	xSemaphoreTake(interruptSemaphore, portTICK_PERIOD_MS );
 
 #ifdef DEBUG
 	Serial.println("Interrupt received");

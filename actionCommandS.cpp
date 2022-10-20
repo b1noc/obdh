@@ -42,7 +42,7 @@ void actionCommandS_activate(void){
 }
 
 static void recieveMessage(void) {
-	command_t command; /* stores the to be executed command */
+	command_t command; /* to be executed command */
 
 	commandInterrupt_start();
 
