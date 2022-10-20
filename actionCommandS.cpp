@@ -1,39 +1,50 @@
 /*
-  Authors: Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
-  Date: 2022-10-15
-  Version: 1.0
-  Language: C
-
-  Responsiblities:
-
-  actionCommandS is responsible for reading commands, interpreting these
-  commands and then taking action as described in [A1]
-
-*/
-
+ * actionCommandS.cpp
+ *
+ * Date: 2022-10-15
+ * Version: 1.0
+ * Language: C
+ *
+ * Title:
+ *		Action Command
+ *
+ * Method:
+ *		This object creates a sporadic task that will start the Command 
+ *		Interrupt Object. The loop will then be blocked by the 
+ *		commandInerrupt_wait() until an interrupt is triggerd. 
+ *		It then passes the returned command to the interpreter Command Object.
+ *
+ * Constriants: 
+ * 		Deadline: 15ms [untested]
+ *
+ * Authors:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
+ *
+ * Reviewed:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 20 October 2022
+ */
 #include <Arduino_FreeRTOS.h>
-#include "actionCommandS.h"
-#include "commandInterrupt.h"
 #include "env_vars.h"
+#include "commandInterrupt.h"
 #include "interpreterCommand.h"
+#include "actionCommandS.h"
 
-static void recieveMessage(void *pvParameters); 
+static void recieveMessage(void); 
 
-void actionCommandS_activate(){
+void actionCommandS_activate(void){
   xTaskCreate(
     recieveMessage
-    ,  "recieveMessage" // Name for identification
-    ,  128  // The stack size
+    ,  "recieveMessage" 
+    ,  128  
     ,  NULL
-    ,  1  // Priority. 3 is highest, 0 is lowest.
+    ,  1   /* Priority TBD */
     ,  NULL );
 }
 
-static void recieveMessage(void *pvParameters) {
-  	(void) pvParameters;
+static void recieveMessage(void) {
+	command_t command; /* stores the to be executed command */
 
 	commandInterrupt_start();
-	command_t command;
 
   	for (;;){
 		command = commandInterrupt_wait();
