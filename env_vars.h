@@ -3,16 +3,18 @@
 
 #define DEBUG
 
+#ifdef DEBUG
+#include <Arduino.h> /* enabling all objects to write to the serial device */
+#endif
+
 #define LED_PIN LED_BUILTIN
-#define ADC_PIN 14 // ADC PIN A0
+#define ADC_PIN 14 /* ADC PIN A0 */
 #define INTERRUPT_PIN 2
 #define COMMAND_PIN_LSB 8
 #define COMMAND_PIN_MSB 9
-#define SAMP_TIME 500 //  TODO: In the current Assy4 document, this is TBD. Set to 500 ms.
-
-#ifdef DEBUG
-#include <Arduino.h>
-#endif
+#define SAMP_TIME 500 /* TBD */ 
+#define BAUD_RATE 9600
+#define SERIAL_SETUP SERIAL_8N1 /* 8 data bits, no parity, 1 stop bit. */
 
 typedef enum
 {
