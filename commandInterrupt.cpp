@@ -1,48 +1,57 @@
 /*
-  Authors: Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
-  Date: 2022-10-15
-  Version: 1.0
-  Language: C
-
-  Responsiblities:
-
-  commandInterrupt is responsible for handling an INT0 external interrupt.
-
+ * commandInterrupt.cpp
+ *
+ * Date: 2022-10-15
+ * Version: 1.0
+ * Language: C
+ *
+ * Title:
+ * 		Command Interrupt
+ *
+ * Method:
+ *   	This object provides interrupt handling through the use of binary
+ *   	semaphores. 
+ *
+ * Authors:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
+ *
+ * Reviewed:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 19 October 2022
+ *
 */
-
 
 #include <Arduino.h>
 #include <Arduino_FreeRTOS.h>
 #include <semphr.h>
-#include "commandInterrupt.h"
 #include "env_vars.h"
+#include "commandInterrupt.h"
 
 static void interruptHandler();
-static SemaphoreHandle_t interruptSemaphore;
+static SemaphoreHandle_t interruptSemaphore; /* stores the reference to the semaphore */
 
-void commandInterrupt_activate(){
-	pinMode(2, INPUT_PULLUP); //going from low to high voltage
-	interruptSemaphore = xSemaphoreCreateBinary(); //creates the semaphore
-	pinMode(COMMANDPINLSB, INPUT_PULLUP);
-	pinMode(COMMANDPINMSB, INPUT_PULLUP);
+void commandInterrupt_activate(void) {
+	pinMode(2, INPUT_PULLUP); 
+	pinMode(COMMAND_PIN_LSB, INPUT_PULLUP);
+	pinMode(COMMAND_PIN_MSB, INPUT_PULLUP);
+	interruptSemaphore = xSemaphoreCreateBinary(); 
 }
 
-void commandInterrupt_start(){
+void commandInterrupt_start(void) {
 	attachInterrupt(digitalPinToInterrupt(2), interruptHandler, RISING);
 }
 
-static void interruptHandler(){
-	xSemaphoreGiveFromISR(interruptSemaphore, NULL); //TODO: Check what NULL means here
+static void interruptHandler(void) {
+	xSemaphoreGiveFromISR(interruptSemaphore, NULL); 
 }
 
 command_t commandInterrupt_wait() {
 	xSemaphoreTake(interruptSemaphore, portMAX_DELAY);
-	command_t command = digitalRead(COMMANDPINLSB) | (digitalRead(COMMANDPINMSB)<<1);
 
 #ifdef DEBUG
 	Serial.println("Interrupt received");
-	Serial.println("command = " + (String) digitalRead(COMMANDPINMSB) + digitalRead(COMMANDPINLSB) + " = " + (String) command);
+	Serial.println("command = " + (String) digitalRead(COMMAND_PIN_MSB) \
+			+ digitalRead(COMMAND_PIN_LSB));
 #endif
 
-	return command;
+	return digitalRead(COMMAND_PIN_LSB) | (digitalRead(COMMAND_PIN_MSB)<<1);
 }
