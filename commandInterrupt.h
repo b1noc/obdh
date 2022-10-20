@@ -34,7 +34,7 @@
  * Reviewed:
  * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 19 October 2022
  *
- * 	Note:
+ * Note:
  * 		The return type of commandInterrupt_wait was changed after discussion 
  * 		with the customer to avoid working with pointers.
  */
