@@ -42,8 +42,10 @@ void txStatusSensor_set(bool status) {
 }
 
 bool txStatusSensor_get(void) {
+	bool status; /* temporary status to be returned after give Semaphore */
+
 	xSemaphoreTake(xSemaphore, 0);
-	bool state = txStatus;
+	status = txStatus;
 	xSemaphoreGive(xSemaphore);
 	return state;
 }
