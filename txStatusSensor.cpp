@@ -1,52 +1,49 @@
 /*
-  Authors: Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
-  Date: 2022-10-15
-  Version: 1.0
-  Language: C
+ * txStatusSensor.cpp
+ *
+ * Date: 2022-10-15
+ * Version: 1.0
+ * Language: C
+ *
+ * Title:
+ *		Tx Status 
+ *
+ * Method:
+ * 		This object uses Mutex Semaphores to protect the reading and writing of
+ * 		the txStatus.
+ *
+ * Authors:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
+ *
+ * Reviewed:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 20 October 2022
+ */
 
-  Responsiblities:
-
-  txStatusSensor is responsible for holding the current transmission status (ON or OFF)
-
-*/
-
- // Include the OS
 #include <Arduino_FreeRTOS.h>
 #include <semphr.h>
-
- // Include local header files
+#include <env_vars.h>
 #include "txStatusSensor.h"
 
- // Declare two static variables that will be used in this object
-static bool currentState; // TODO: Is declaring this static a problem if it is returned in txStatusSensor_get()?
-static SemaphoreHandle_t xSemaphore;
+static bool txStatus; /* TX status deciding if transmission is ON/OFF. */
+static SemaphoreHandle_t xSemaphore; /* Mutex semaphore reference */
 
- // Functions
-
-void txStatusSensor_init(){
-	// Upon initialisation, transmission is set to OFF.
-	currentState = 0;
-	// Initialise the Mutex Semaphore as this is a protected object.
+void txStatusSensor_init(void) {
+	txStatus = 0;
 	xSemaphore = xSemaphoreCreateMutex();
-	if ( xSemaphore == NULL ) 
-	{
-		// TODO: This would throw an error.
-	}
 }
 
-void txStatusSensor_set(bool status){
-	/*
-	This function is responsible for taking the status
-	applied to it, and setting the currentState to it
-	*/
-	xSemaphoreTake( xSemaphore, 0);
-	currentState = status;
-	xSemaphoreGive( xSemaphore );
+void txStatusSensor_set(bool status) {
+#ifdef DEBUG
+	Serial.println("sensor_setTxStatus: status = "+ (String)status);
+#endif
+	xSemaphoreTake(xSemaphore, 0);
+	txStatus = status;
+	xSemaphoreGive(xSemaphore);
 }
 
-bool txStatusSensor_get(){
-	xSemaphoreTake( xSemaphore, 0);
-	bool state = currentState;
-	xSemaphoreGive( xSemaphore );
+bool txStatusSensor_get(void) {
+	xSemaphoreTake(xSemaphore, 0);
+	bool state = txStatus;
+	xSemaphoreGive(xSemaphore);
 	return state;
 }
