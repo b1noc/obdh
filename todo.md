@@ -8,8 +8,7 @@ TODO:
 - [x] ifndef
 - [x] taskdelayUntil CommandAction
 - [x] initialize sensor state in Sensor_init
-- [ ] resolve all TODOs
-
+- [x] resolve all TODOs
 
 - [?] double state definitions
 - [?] type_t argument
