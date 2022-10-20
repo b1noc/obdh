@@ -12,9 +12,14 @@
 #define INTERRUPT_PIN 2
 #define COMMAND_PIN_LSB 8
 #define COMMAND_PIN_MSB 9
-#define SAMP_TIME 500 /* TBD */ 
+
 #define BAUD_RATE 9600
 #define SERIAL_SETUP SERIAL_8N1 /* 8 data bits, no parity, 1 stop bit. */
+
+#define TPRIO_RECEIVE_MESSAGE 1 /* TBD */
+#define TPRIO_SAMPLE_LOOP 1 /* TBD */
+#define RECEIVE_MESSAGE_TASK_PRIO 1 /* TBD */
+#define SAMP_TIME 500 /* TBD */ 
 
 typedef enum
 {

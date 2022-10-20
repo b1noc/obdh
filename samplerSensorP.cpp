@@ -43,7 +43,7 @@ void samplerSensorP_activate(void) {
     ,  "sampleLoop" // Name for identification
     ,  128  // The stack size
     ,  NULL
-    ,  1  /* TBD */
+    ,  TPRIO_SAMPLE_LOOP
     ,  NULL );
 }
 

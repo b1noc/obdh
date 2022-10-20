@@ -37,7 +37,7 @@ void actionCommandS_activate(void){
     ,  "recieveMessage" 
     ,  128  
     ,  NULL
-    ,  1   /* Priority TBD */
+    ,  TPRIO_RECEIVE_MESSAGE 
     ,  NULL );
 }
 
