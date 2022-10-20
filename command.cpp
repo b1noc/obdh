@@ -1,27 +1,32 @@
 /*
-  Authors: Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
-  Date: 2022-10-15
-  Version: 1.0
-  Language: C
-
-  Responsiblities:
-
-  command is responsible for reading commands, interpreting these
-  commands and then taking action as described in [A1]
-
-*/
-
-
+ * command.cpp
+ *
+ * Date: 2022-10-15
+ * Version: 1.0
+ * Language: C
+ *
+ * Title:
+ *		Command
+ *
+ * Method:
+ *		This object initializes all it's child objects. 
+ *
+ * Authors:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
+ *
+ * Reviewed:
+ * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 20 October 2022
+ */
 #include <Arduino_FreeRTOS.h>
 #include <Arduino.h>
-#include "modes.h"
 #include "env_vars.h"
-#include "txStatusSensor.h"
-#include "interpreterCommand.h"
-#include "actionCommandS.h"
+#include "sensor.h"
+#include "modes.h"
 #include "commandInterrupt.h"
+#include "actionCommandS.h"
+#include "interpreterCommand.h"
 
-void command_activate(){
+void command_activate(void) {
     commandInterrupt_activate();
     actionCommandS_activate();
     interpreterCommand_init();
