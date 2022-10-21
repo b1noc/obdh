@@ -17,7 +17,8 @@
  * 			Initializes the serial device.
  *
  * 		transmitAscii(unit16_t data):
- * 			Transmit the Ascii data via the serial device.
+ * 			Convert the A/D voltage into decimal voltage with two decimals and 
+ * 			transmit as Ascii data via the serial device.
  *
  * Authors:
  * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis

@@ -37,5 +37,10 @@ void txSensor_init(void) {
 }
 
 void txSensor_transmitAscii(uint16_t data) {
-    Serial.println(data);
+	float voltage; /* data as floating point number */ 
+	char output[6]; /* voltage formatted in Ascii according to format*/
+
+	voltage = data * (5.0 / 1023.0);
+	sprintf(output,"%d\r\n", voltage);
+    Serial.println(voltage);
 }
