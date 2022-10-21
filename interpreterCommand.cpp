@@ -34,6 +34,7 @@ void interpreterCommand_init(void) {
 }
 
 void interpreterCommand_execute(command_t command) {
+	mode_t mode; /* current mode */
 
 #ifdef DEBUG
 	Serial.println("Command execute = " + (String) command);
@@ -46,7 +47,8 @@ void interpreterCommand_execute(command_t command) {
 		modes_set(NORMAL);
 	}
 	else if (command == TRANS_ON) {
-		if (modes_get() != SAFE){
+		modes_get(&mode);
+		if (mode != SAFE){
 			sensor_setTxStatus(1);
 		}
 	}

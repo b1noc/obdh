@@ -47,7 +47,7 @@ static void recieveMessage(void) {
 	commandInterrupt_start();
 
   	for (;;){
-		command = commandInterrupt_wait();
+		commandInterrupt_wait(&command);
 		interpreterCommand_execute(command);
 	 }
 }

@@ -33,6 +33,6 @@
 
 void modes_init(void);
 void modes_set(mode_t mode);
-mode_t modes_get(void);
+void modes_get(mode_t *mode);
 
 #endif

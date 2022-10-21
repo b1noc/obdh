@@ -34,6 +34,6 @@ void modes_set(mode_t mode) {
   modesPO_set(mode);
 }
 
-mode_t modes_get(void) {
-  return modesPO_get();
+void modes_get(mode_t *mode) {
+  modesPO_get(mode);
 }

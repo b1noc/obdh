@@ -51,12 +51,9 @@ void modesPO_set(mode_t mode) {
 	}
 }
 
-mode_t modesPO_get(void) {
-	mode_t mode; /* temporary mode to be returned after give Semaphore */
-
+void modesPO_get(mode_t *mode) {
 	xSemaphoreTake(xSemaphore, 0);
-	mode = swMode;
+	*mode = swMode;
 	xSemaphoreGive(xSemaphore);
-	return mode;
 }
 

@@ -26,18 +26,12 @@
  *
  * Reviewed:
  * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 20 October 2022
- *
- * Note:
- * 		The return type of modesPO_get was changed after discussion 
- * 		with the customer to avoid working with pointers.
- * 		This workaround for mutual exclusion is not ideal and pointer logic 
- * 		shall be included in a later release of this function.
  */
 #ifndef MODESPO.H
 #define MODESPO.H
 
 void modesPO_init(void);
 void modesPO_set(mode_t mode);
-mode_t modesPO_get(void);
+void modesPO_get(mode_t *mode);
 
 #endif

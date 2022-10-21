@@ -43,7 +43,7 @@ static void interruptHandler(void) {
 	xSemaphoreGiveFromISR(interruptSemaphore, NULL); 
 }
 
-command_t commandInterrupt_wait(void) {
+void commandInterrupt_wait(command_t *command) {
 	xSemaphoreTake(interruptSemaphore, portMAX_DELAY);
 
 #ifdef DEBUG
@@ -52,5 +52,5 @@ command_t commandInterrupt_wait(void) {
 			+ digitalRead(COMMAND_PIN_LSB));
 #endif
 
-	return digitalRead(COMMAND_PIN_LSB) | (digitalRead(COMMAND_PIN_MSB)<<1);
+	*command = digitalRead(COMMAND_PIN_LSB) | (digitalRead(COMMAND_PIN_MSB)<<1);
 }

@@ -49,13 +49,17 @@ void samplerSensorP_activate(void) {
 
 static void sampleLoop(void) {
 	uint16_t sensorValue; /* sensor value read from ADC */
+	mode_t mode; /* current mode */
+	bool status; /* current status */
 	TickType_t xLastWakeTime; /* last tic function was run */
 
 	for (;;){
-		if (modes_get() == SAFE) {
+		modes_get(&mode);
+		if (mode == SAFE) {
 			txStatusSensor_set(0);
 		}
-		if (txStatusSensor_get() == 1) {
+		txStatusSensor_get(&status);
+		if (status == 1) {
 			sensorValue = analogRead(ADC_PIN); 
 			txSensor_transmitAscii(sensorValue);
 		}
