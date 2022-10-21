@@ -17,6 +17,9 @@
  * Reviewed:
  * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 20 October 2022
  */
+#include <Arduino.h>
+#include <Arduino_FreeRTOS.h>
+#include "env_vars.h"
 #include "commandInterrupt.h"
 #include "actionCommandS.h"
 #include "interpreterCommand.h"

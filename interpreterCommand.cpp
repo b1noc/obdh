@@ -24,7 +24,7 @@
  */
 #include <Arduino.h>
 #include <Arduino_FreeRTOS.h>
-#include <env_vars.h>
+#include "env_vars.h"
 #include "modes.h"
 #include "sensor.h"
 #include "interpreterCommand.h"

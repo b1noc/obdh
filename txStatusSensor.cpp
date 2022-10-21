@@ -20,7 +20,7 @@
  */
 #include <Arduino_FreeRTOS.h>
 #include <semphr.h>
-#include <env_vars.h>
+#include "env_vars.h"
 #include "txStatusSensor.h"
 
 static bool txStatus; /* TX status deciding if transmission is ON/OFF. */

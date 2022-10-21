@@ -18,6 +18,8 @@
  * Reviewed:
  * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis, 20 October 2022
  */
+#include <Arduino.h>
+#include <Arduino_FreeRTOS.h>
 #include "txSensor.h"
 #include "samplerSensorP.h"
 #include "txStatusSensor.h"
