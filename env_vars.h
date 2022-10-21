@@ -19,7 +19,11 @@
 #define TPRIO_RECEIVE_MESSAGE 1 /* TBD */
 #define TPRIO_SAMPLE_LOOP 1 /* TBD */
 #define RECEIVE_MESSAGE_TASK_PRIO 1 /* TBD */
-#define SAMP_TIME 500 /* TBD */ 
+/*
+ * The SAMP_TIME shall be a multiple of TickTime (16ms) to avoid rounding
+ * errors when converting it to a ticktime.
+ */
+#define SAMP_TIME 400 /* TBD */ 
 
 typedef enum
 {

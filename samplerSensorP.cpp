@@ -58,7 +58,9 @@ static void sampleLoop(void) {
 
 #ifdef DEBUG
 	Serial.println("starting sampleLoop");
+	Serial.println("tickLenght [ms] = " + (String) portTICK_PERIOD_MS );
 #endif
+	 xLastWakeTime = xTaskGetTickCount();
 
 	for (;;){
 #ifdef DEBUG
@@ -73,7 +75,7 @@ static void sampleLoop(void) {
 			sensorValue = analogRead(ADC_PIN); 
 			txSensor_transmitAscii(sensorValue);
 		}
-		/* The SAMP_TIME is divided by the portTick_PERIOD_MS because SAMP_TIME
+		/* The SAMP_TIME is divided by the portTICK_PERIOD_MS because SAMP_TIME
 		 * is specified in ms. */
 		vTaskDelayUntil(&xLastWakeTime, SAMP_TIME / portTICK_PERIOD_MS ); 
 	}
