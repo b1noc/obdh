@@ -1,7 +1,7 @@
 #ifndef ENV_VARS.H
 #define ENV_VARS.H
 
-#define DEBUG
+//#define DEBUG
 
 #ifdef DEBUG
 #include <Arduino.h> /* enabling all objects to write to the serial device */
