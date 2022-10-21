@@ -14,7 +14,7 @@
  *		commandInerrupt_wait() until an interrupt is triggerd. 
  *		It then passes the returned command to the interpreter Command Object.
  *
- * Constriants: 
+ * Constraints: 
  * 		Deadline: 15ms [untested]
  *
  * Authors:

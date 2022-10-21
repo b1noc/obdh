@@ -15,6 +15,9 @@
  * 		The periodic task will check the mode and if the mode is SAFE it will set
  * 		the transmission status OFF.
  *
+ * Constraints: 
+ * 		Deadline: 15ms [untested]
+ *
  * Authors:
  * 		Tom Causer, Finn Hansch, Jacek Patora, Pavlos Vlazakis
  *
