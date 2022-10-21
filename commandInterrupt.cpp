@@ -44,7 +44,7 @@ static void interruptHandler(void) {
 }
 
 command_t commandInterrupt_wait(void) {
-	xSemaphoreTake(interruptSemaphore, portTICK_PERIOD_MS );
+	xSemaphoreTake(interruptSemaphore, portMAX_DELAY);
 
 #ifdef DEBUG
 	Serial.println("Interrupt received");
