@@ -51,6 +51,11 @@ void interpreterCommand_execute(command_t command) {
 		if (mode != SAFE){
 			sensor_setTxStatus(1);
 		}
+#ifdef DEBUG
+		else {
+			Serial.println("Command ignored (in SAFE)");
+		}
+#endif
 	}
 	else if (command == TRANS_OFF) {
 		sensor_setTxStatus(0);

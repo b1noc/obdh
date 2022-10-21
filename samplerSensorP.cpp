@@ -40,8 +40,8 @@ static void sampleLoop(void);
 void samplerSensorP_activate(void) {
   xTaskCreate(
     sampleLoop
-    ,  "sampleLoop" // Name for identification
-    ,  128  // The stack size
+    ,  "sampleLoop" 
+    ,  128  
     ,  NULL
     ,  TPRIO_SAMPLE_LOOP
     ,  NULL );
@@ -53,7 +53,14 @@ static void sampleLoop(void) {
 	bool status; /* current status */
 	TickType_t xLastWakeTime; /* last tic function was run */
 
+#ifdef DEBUG
+	Serial.println("starting sampleLoop");
+#endif
+
 	for (;;){
+#ifdef DEBUG
+		Serial.println("lastRun = " + (String) (xLastWakeTime * portTICK_PERIOD_MS) );
+#endif
 		modes_get(&mode);
 		if (mode == SAFE) {
 			txStatusSensor_set(0);

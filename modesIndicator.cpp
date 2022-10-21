@@ -29,13 +29,13 @@ void modesIndicator_init(void) {
 void modesIndicator_set(bool status) {
 	if (status == 1) {
 #ifdef DEBUG
-		Serial.println("Turn on LED status = " + (String) status);
+		Serial.println("Turn on LED");
 #endif
 		digitalWrite(LED_PIN, HIGH);
 	}
 	else if (status == 0) {
 #ifdef DEBUG
-		Serial.println("Turn off LED status = " + (String) status);
+		Serial.println("Turn off LED");
 #endif
 		digitalWrite(LED_PIN, LOW);
 	}

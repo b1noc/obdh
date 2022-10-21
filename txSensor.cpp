@@ -22,8 +22,6 @@
  * 		The serial initialization is removed when the compile DEBUG flag is set 
  * 		as the Serial device is initialized in the init.ino file so that all 
  * 		objects can write messages.
- * 		Also the sensor transmitAscii function is disabled with the DEBUG flag
- * 		to keep the output clear for debug messages. 
  */
 #include <Arduino.h>
 #include "env_vars.h"
@@ -39,7 +37,5 @@ void txSensor_init(void) {
 }
 
 void txSensor_transmitAscii(uint16_t data) {
-	#ifndef DEBUG
     Serial.println(data);
-	#endif
 }

@@ -49,7 +49,7 @@ void commandInterrupt_wait(command_t *command) {
 #ifdef DEBUG
 	Serial.println("Interrupt received");
 	Serial.println("command = " + (String) digitalRead(COMMAND_PIN_MSB) \
-			+ digitalRead(COMMAND_PIN_LSB));
+			+ " " + (String) digitalRead(COMMAND_PIN_LSB));
 #endif
 
 	*command = digitalRead(COMMAND_PIN_LSB) | (digitalRead(COMMAND_PIN_MSB)<<1);

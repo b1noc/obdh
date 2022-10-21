@@ -37,7 +37,7 @@ void txStatusSensor_init(void) {
 
 void txStatusSensor_set(bool status) {
 #ifdef DEBUG
-	Serial.println("sensor_setTxStatus: status = "+ (String)status);
+	Serial.println("TxStatus set to "+ (String)status);
 #endif
 	xSemaphoreTake(xSemaphore, 0);
 	txStatus = status;
